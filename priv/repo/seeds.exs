@@ -22,18 +22,18 @@ defmodule DBSeed do
     |> Enum.map(fn {:ok, x} -> x end)
   end
 
-  def get_folder_list(path) do
+  defp get_folder_list(path) do
     {:ok, list} = File.ls(path)
     list
   end
 
-  def csv_to_enum_list(date) do
+  defp csv_to_enum_list(date) do
     File.stream!("./data/#{date}/#{date}-city-of-london-street.csv")
     |> CSV.decode!(seperator: ',', headers: true)
     |> Enum.to_list()
   end
 
-  def convert_to_schema(crime) do
+  defp convert_to_schema(crime) do
     %{
       context: crime["Context"],
       crime_id: crime["Crime ID"],
@@ -50,8 +50,8 @@ defmodule DBSeed do
     }
   end
 
-  def parse_float(""), do: 0
-  def parse_float(string) do
+  defp parse_float(""), do: 0
+  defp parse_float(string) do
     {float, _} = string |> Float.parse()
     float
   end
