@@ -16,7 +16,8 @@ defmodule CsvPhxWeb.Router do
   scope "/", CsvPhxWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", CrimeController, :index
+    resources "/crimes", CrimeController
   end
 
   # Other scopes may use custom stacks.

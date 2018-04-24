@@ -1,0 +1,68 @@
+<h2>Show Crime</h2>
+
+<ul>
+
+  <li>
+    <strong>Crime:</strong>
+    <%= @crime.crime_id %>
+  </li>
+
+  <li>
+    <strong>Month:</strong>
+    <%= @crime.month %>
+  </li>
+
+  <li>
+    <strong>Reported by:</strong>
+    <%= @crime.reported_by %>
+  </li>
+
+  <li>
+    <strong>Falls within:</strong>
+    <%= @crime.falls_within %>
+  </li>
+
+  <li>
+    <strong>Longitude:</strong>
+    <%= @crime.longitude %>
+  </li>
+
+  <li>
+    <strong>Latitude:</strong>
+    <%= @crime.latitude %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @crime.location %>
+  </li>
+
+  <li>
+    <strong>Lsoa code:</strong>
+    <%= @crime.lsoa_code %>
+  </li>
+
+  <li>
+    <strong>Lsoa name:</strong>
+    <%= @crime.lsoa_name %>
+  </li>
+
+  <li>
+    <strong>Crime type:</strong>
+    <%= @crime.crime_type %>
+  </li>
+
+  <li>
+    <strong>Last outcome category:</strong>
+    <%= @crime.last_outcome_category %>
+  </li>
+
+  <li>
+    <strong>Context:</strong>
+    <%= @crime.context %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: crime_path(@conn, :edit, @crime) %></span>
+<span><%= link "Back", to: crime_path(@conn, :index) %></span>

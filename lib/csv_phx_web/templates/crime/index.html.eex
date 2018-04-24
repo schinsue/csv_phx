@@ -1,0 +1,48 @@
+<h2>Listing Crimes</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Crime</th>
+      <th>Month</th>
+      <th>Reported by</th>
+      <th>Falls within</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Location</th>
+      <th>Lsoa code</th>
+      <th>Lsoa name</th>
+      <th>Crime type</th>
+      <th>Last outcome category</th>
+      <th>Context</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for crime <- @crimes do %>
+    <tr>
+      <td><%= crime.crime_id %></td>
+      <td><%= crime.month %></td>
+      <td><%= crime.reported_by %></td>
+      <td><%= crime.falls_within %></td>
+      <td><%= crime.longitude %></td>
+      <td><%= crime.latitude %></td>
+      <td><%= crime.location %></td>
+      <td><%= crime.lsoa_code %></td>
+      <td><%= crime.lsoa_name %></td>
+      <td><%= crime.crime_type %></td>
+      <td><%= crime.last_outcome_category %></td>
+      <td><%= crime.context %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: crime_path(@conn, :show, crime), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: crime_path(@conn, :edit, crime), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: crime_path(@conn, :delete, crime), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Crime", to: crime_path(@conn, :new) %></span>
