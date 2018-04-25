@@ -57,6 +57,16 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    whitelist: [
+      "jquery",
+      "bootstrap",
+      "bootstrap-select",
+    ],
+    globals: { // Bootstrap JavaScript requires both '$', 'jQuery', and Tether in global scope
+      $: 'jquery',
+      jQuery: 'jquery',
+      bootstrap: 'bootstrap' // require Bootstrap JavaScript globally too
+    }
   }
 };
