@@ -57,4 +57,8 @@ defmodule CsvPhxWeb.CrimeController do
     |> put_flash(:info, "Crime deleted successfully.")
     |> redirect(to: crime_path(conn, :index))
   end
+
+  def search(conn) do
+    conn
+  end
 end
