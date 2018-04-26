@@ -83,5 +83,16 @@ defmodule CsvPhx.ReportsTest do
       crime = crime_fixture()
       assert %Ecto.Changeset{} = Reports.change_crime(crime)
     end
+
+    test "search_crime_by_location returns crime on search" do
+      crime = crime_fixture()
+      assert [crime] == Reports.search_crimes_by_location(crime.location)
+    end
+
+    test "search_crime_by_location is case insensitive" do
+      crime = crime_fixture()
+      location = crime.location |> String.upcase()
+      assert [crime] == Reports.search_crimes_by_location(location)
+    end
   end
 end

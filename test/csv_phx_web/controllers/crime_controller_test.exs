@@ -81,6 +81,20 @@ defmodule CsvPhxWeb.CrimeControllerTest do
     end
   end
 
+  describe "search crime" do
+    setup [:create_crime]
+
+    test "search returns correct crime", %{conn: conn, crime: crime} do
+      conn = get conn, crime_path(conn, :search, %{"term" => "location"})
+       assert html_response(conn, 200) =~ "some crime_id"
+    end
+
+    test "search returns nothing when no crimes found", %{conn: conn, crime: crime} do
+      conn = get conn, crime_path(conn, :search, %{"term" => "xxx"})
+       refute html_response(conn, 200) =~ "some crime_id"
+    end
+  end
+
   defp create_crime(_) do
     crime = fixture(:crime)
     {:ok, crime: crime}
