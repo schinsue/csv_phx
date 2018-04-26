@@ -58,7 +58,12 @@ defmodule CsvPhxWeb.CrimeController do
     |> redirect(to: crime_path(conn, :index))
   end
 
-  def search(conn) do
-    conn
+  def search(conn, %{"term" => term}) do
+    crimes = Reports.search_crimes_by_location(term)
+    render(conn, "index.html", crimes: crimes)
+  end
+
+  def search(conn, _params) do
+    render(conn, "index.html", crimes: [])
   end
 end

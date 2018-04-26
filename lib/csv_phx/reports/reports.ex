@@ -7,6 +7,7 @@ defmodule CsvPhx.Reports do
   alias CsvPhx.Repo
 
   alias CsvPhx.Reports.Crime
+  alias CsvPhx.Helpers.{Ecto, String}
 
   @doc """
   Returns the list of crimes.
@@ -100,5 +101,20 @@ defmodule CsvPhx.Reports do
   """
   def change_crime(%Crime{} = crime) do
     Crime.changeset(crime, %{})
+  end
+
+  def search_crimes_by_location(term) do
+    search_term = term 
+      |> Ecto.sanitize_sql_like()
+      |> String.surround_by_percentages()
+
+    # Could've sorted/filtered by myself, but it's better to leverage
+    # Ecto's power in this case...
+    from(c in Crime,
+      where: ilike(c.location, ^search_term),
+      order_by: [asc: c.crime_id],
+      limit: 100
+    )
+    |> Repo.all()
   end
 end

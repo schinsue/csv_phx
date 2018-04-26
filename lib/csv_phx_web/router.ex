@@ -18,7 +18,7 @@ defmodule CsvPhxWeb.Router do
 
     get "/", CrimeController, :index
     resources "/crimes", CrimeController
-    post "/search", CrimeController, :search
+    get "/search", CrimeController, :search
   end
 
   # Other scopes may use custom stacks.
